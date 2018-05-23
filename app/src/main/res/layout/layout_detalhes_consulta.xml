@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="*"
+    android:background="@color/bright"
+    tools:context=".DetalhesConsultasActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/txt_codigo"
+            android:layout_gravity="fill"
+            android:text="@string/codigo"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/form_codigo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"/>
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/txt_paciente"
+            android:layout_gravity="fill"
+            android:text="@string/paciente"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/form_paciente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"/>
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/txt_procedimento"
+            android:layout_gravity="fill"
+            android:text="@string/procedimento"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/form_procedimento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"/>
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/txt_unidade_solicitante"
+            android:layout_gravity="fill"
+            android:text="@string/unidade_solicitante"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/form_unidade_solicitante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"/>
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/txt_local"
+            android:layout_gravity="fill"
+            android:text="@string/local"
+            android:textAlignment="center"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/form_local"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:marqueeRepeatLimit="marquee_forever"/>
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/txt_data"
+            android:layout_gravity="fill"
+            android:text="@string/data"
+            android:textAlignment="center"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/form_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:marqueeRepeatLimit="marquee_forever"/>
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/txt_situacao"
+            android:layout_gravity="fill"
+            android:text="@string/situacao"
+            android:textAlignment="center"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/form_situacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"/>
+
+    </TableRow>
+</TableLayout>

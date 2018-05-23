@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name"> SUS Consulta</string>
+    <string name="aguarde">Aguarde</string>
+    <string name="action_settings">Configurações</string>
+    <string name="adicionar_codigo">Adicionar Consulta</string>
+    <string name="digite_codigo">Digite o código da consulta</string>
+    <string name="botao_cadastrar">Cadastrar</string>
+    <string name="apagar">Apagar</string>
+    <string name="buscamapa">Buscar no Mapa</string>
+    <string name="alerta">Criar Alerta</string>
+    <string name="codigo">Código:</string>
+    <string name="paciente">Paciente:</string>
+    <string name="procedimento">Procedimento:</string>
+    <string name="unidade_solicitante">Und. Solicitante:</string>
+    <string name="local">Local:</string>
+    <string name="data">Data:</string>
+    <string name="situacao">Situação:</string>
+    <string name="toast_excluir_consulta">Consulta Excluída!</string>
+    <string name="toast_atualizado">Atualizado!</string>
+    <string name="toast_usuario_vazio">Digite um Usuário!</string>
+    <string name="toast_consulta_vazio">Digite um Código de Consulta!</string>
+    <string name="menu_suspenso_apagar">Apagar</string>
+    <string name="menu_suspenso_maps">Buscar no Mapa</string>
+    <string name="menu_suspenso_alerta">Criar Alerta</string>
+    <string name="adicionar">Adicionar</string>
+    <string name="adicionar_usuario">Adicionar usuario</string>
+    <string name="nome_usuario">Nome</string>
+    <string name="usuario">Usuario</string>
+    <string name="usuario_excluido">Usuario excluído!</string>
+    <string name="consulta_pendente">PENDENTE</string>
+    <string name="consulta_autorizada">AUTORIZADA</string>
+    <string name="consulta_expirada">EXPIRADA</string>
+    <string name="status">Status</string>
+    <string name="salvar_consulta">Salvar consulta</string>
+</resources>
