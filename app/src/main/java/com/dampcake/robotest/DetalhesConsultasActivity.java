@@ -13,7 +13,7 @@ import DAO.ConsultaDAO;
 import helper.DetalhesConsultasHelper;
 import model.Consulta;
 
-public class DetalhesConsultasActivity extends AppCompatActivity {
+public class  DetalhesConsultasActivity extends AppCompatActivity {
 
     private DetalhesConsultasHelper helper;
     private Consulta consulta;

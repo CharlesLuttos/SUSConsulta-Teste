@@ -26,18 +26,19 @@ import com.androidnetworking.interfaces.ParsedRequestListener;
 import java.util.ArrayList;
 
 import DAO.ConsultaDAO;
+import DAO.UsuarioDAO;
 import adapters.ConsultaAdapter;
 import model.Consulta;
 import model.Usuario;
 
 public class ConsultasActivity extends AppCompatActivity {
     SwipeRefreshLayout swipeLayout;
-    ListView listView;
-    ArrayList<Consulta> listaConsultas;
+    public ListView listView;
+    public ArrayList<Consulta> listaConsultas;
     ConsultaAdapter consultaAdapter;
-    ConsultaDAO consultaDAO;
+    public ConsultaDAO consultaDAO;
     Usuario usuario;
-    FloatingActionButton fab;
+    public FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,8 +144,8 @@ public class ConsultasActivity extends AppCompatActivity {
     /**
      * Inicializa banco criando conexao e tabelas
      */
-    private void inicializarBanco() {
-        consultaDAO = new ConsultaDAO(getBaseContext());
+    public void inicializarBanco() {
+        setConsultaDao(new ConsultaDAO(getBaseContext()));
     }
 
     /**
@@ -158,12 +159,13 @@ public class ConsultasActivity extends AppCompatActivity {
     /**
      * Define adapter e carrega lista com dados do banco
      */
-    private void carregarLista() {
+    public void carregarLista() {
         listView = findViewById(R.id.lista_consulta);
         listView.setEmptyView(findViewById(android.R.id.empty));
         listaConsultas = consultaDAO.listar(usuario); // Necessario informar usuario para saber quais consultas listar
         consultaAdapter = new ConsultaAdapter(this, listaConsultas);
         listView.setAdapter(consultaAdapter);
+
         // Registra para o menu de contexto (exibido ao manter o toque sobre um item da lista)
         registerForContextMenu(listView);
     }
@@ -255,5 +257,13 @@ public class ConsultasActivity extends AppCompatActivity {
      */
     public void exibirToast(String mensagem) {
         Toast.makeText(ConsultasActivity.this, mensagem, Toast.LENGTH_SHORT).show();
+    }
+
+    public ConsultaDAO getConsultaDao() {
+        return consultaDAO;
+    }
+
+    public void setConsultaDao(ConsultaDAO consultaDao) {
+        this.consultaDAO = consultaDao;
     }
 }

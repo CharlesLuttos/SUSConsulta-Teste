@@ -33,14 +33,14 @@ import model.Usuario;
 
 
 public class CadastroConsultasActivity extends AppCompatActivity {
-    EditText txtCodigo;
-    Button button;
+    public EditText txtCodigo;
+    public Button button;
     Consulta consulta;
     int codigoConsulta;
-    ConsultaDAO consultaDAO;
+    public ConsultaDAO consultaDAO;
     JSONObject jsonObject;
     ProgressDialog pd;
-    AlertDialog.Builder alerta;
+    public AlertDialog.Builder alerta;
     Usuario usuario;
 
     @Override
