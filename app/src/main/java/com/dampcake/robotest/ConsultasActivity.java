@@ -26,19 +26,18 @@ import com.androidnetworking.interfaces.ParsedRequestListener;
 import java.util.ArrayList;
 
 import DAO.ConsultaDAO;
-import DAO.UsuarioDAO;
 import adapters.ConsultaAdapter;
 import model.Consulta;
 import model.Usuario;
 
 public class ConsultasActivity extends AppCompatActivity {
     SwipeRefreshLayout swipeLayout;
-    public ListView listView;
-    public ArrayList<Consulta> listaConsultas;
+    ListView listView;
+    ArrayList<Consulta> listaConsultas;
     ConsultaAdapter consultaAdapter;
-    public ConsultaDAO consultaDAO;
+    private ConsultaDAO consultaDAO;
     Usuario usuario;
-    public FloatingActionButton fab;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,7 +143,7 @@ public class ConsultasActivity extends AppCompatActivity {
     /**
      * Inicializa banco criando conexao e tabelas
      */
-    public void inicializarBanco() {
+    private void inicializarBanco() {
         setConsultaDao(new ConsultaDAO(getBaseContext()));
     }
 
@@ -219,7 +218,7 @@ public class ConsultasActivity extends AppCompatActivity {
      * Obtem uma consulta atualizada da API
      * @param codigo codigo da consulta
      */
-    private void getConsulta(Integer codigo){
+    public void getConsulta(Integer codigo){
         AndroidNetworking.get("http://192.168.0.2/autoconsulta/{codConsulta}")
                 .addPathParameter("codConsulta", codigo.toString())
                 .setTag(this)

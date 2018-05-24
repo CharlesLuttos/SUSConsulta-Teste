@@ -48,9 +48,15 @@ public class CadastroConsultasActivityTest {
 
 
     @Test
-    public void clickNovoUsuarioVazio(){
+    public void clickNovaConsultaVazia() {
         CadastroConsultasActivity activity = Robolectric.buildActivity(CadastroConsultasActivity.class).create().visible().get();
         activity.findViewById(R.id.btnCadastroCodigo).performClick();
+        assertFalse(activity.isFinishing());
+    }
+
+    @Test
+    public void clickNovaConsultaNaoVazia() {
+        CadastroConsultasActivity activity = Robolectric.buildActivity(CadastroConsultasActivity.class).create().visible().get();
         EditText et = activity.findViewById(R.id.txtCodigo);
         et.setText("8");
         activity.findViewById(R.id.btnCadastroCodigo).performClick();

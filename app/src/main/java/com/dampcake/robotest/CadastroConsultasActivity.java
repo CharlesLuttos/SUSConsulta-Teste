@@ -33,14 +33,14 @@ import model.Usuario;
 
 
 public class CadastroConsultasActivity extends AppCompatActivity {
-    public EditText txtCodigo;
-    public Button button;
+    EditText txtCodigo;
+    Button button;
     Consulta consulta;
     int codigoConsulta;
-    public ConsultaDAO consultaDAO;
+    ConsultaDAO consultaDAO;
     JSONObject jsonObject;
     ProgressDialog pd;
-    public AlertDialog.Builder alerta;
+    AlertDialog.Builder alerta;
     Usuario usuario;
 
     @Override
@@ -72,14 +72,14 @@ public class CadastroConsultasActivity extends AppCompatActivity {
     /**
      * Resgata objetos de uma intent
      */
-    private void resgatarObjetos() {
+    public void resgatarObjetos() {
         usuario = (Usuario) getIntent().getSerializableExtra("usuario");
     }
 
     /**
      * Instancia demais objetos
      */
-    private void inicializarObjetos() {
+    public void inicializarObjetos() {
         alerta = new AlertDialog.Builder(this);
         consultaDAO = new ConsultaDAO(getBaseContext());
     }
@@ -87,7 +87,7 @@ public class CadastroConsultasActivity extends AppCompatActivity {
     /**
      * Instancia os componentes
      */
-    private void inicializarComponentes() {
+    public void inicializarComponentes() {
         txtCodigo = findViewById(R.id.txtCodigo);
         button = findViewById(R.id.btnCadastroCodigo);
     }
@@ -190,7 +190,7 @@ public class CadastroConsultasActivity extends AppCompatActivity {
      * @throws JSONException Ao nao conseguir montar o objeto
      */
     public Consulta formarObjetoConsulta(JSONObject jsonObject, boolean test) throws JSONException {
-        consulta = new Consulta();
+        consulta = null;
         boolean invalido = true;
 
         if(jsonObject.has("cod_consulta") &&
@@ -200,6 +200,7 @@ public class CadastroConsultasActivity extends AppCompatActivity {
            jsonObject.has("local_atendimento") &&
            jsonObject.has("situacao")) {
             invalido = false;
+            consulta = new Consulta();
             consulta.setCodigoConsulta(jsonObject.getInt("cod_consulta"));
             consulta.setPaciente(jsonObject.get("paciente").toString());
             consulta.setProcedimento(jsonObject.get("procedimento").toString());
