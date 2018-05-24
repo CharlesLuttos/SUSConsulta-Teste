@@ -35,7 +35,7 @@ public class ConsultasActivity extends AppCompatActivity {
     ListView listView;
     ArrayList<Consulta> listaConsultas;
     ConsultaAdapter consultaAdapter;
-    ConsultaDAO consultaDAO;
+    private ConsultaDAO consultaDAO;
     Usuario usuario;
     FloatingActionButton fab;
 
@@ -144,7 +144,7 @@ public class ConsultasActivity extends AppCompatActivity {
      * Inicializa banco criando conexao e tabelas
      */
     private void inicializarBanco() {
-        consultaDAO = new ConsultaDAO(getBaseContext());
+        setConsultaDao(new ConsultaDAO(getBaseContext()));
     }
 
     /**
@@ -158,12 +158,13 @@ public class ConsultasActivity extends AppCompatActivity {
     /**
      * Define adapter e carrega lista com dados do banco
      */
-    private void carregarLista() {
+    public void carregarLista() {
         listView = findViewById(R.id.lista_consulta);
         listView.setEmptyView(findViewById(android.R.id.empty));
         listaConsultas = consultaDAO.listar(usuario); // Necessario informar usuario para saber quais consultas listar
         consultaAdapter = new ConsultaAdapter(this, listaConsultas);
         listView.setAdapter(consultaAdapter);
+
         // Registra para o menu de contexto (exibido ao manter o toque sobre um item da lista)
         registerForContextMenu(listView);
     }
@@ -217,7 +218,7 @@ public class ConsultasActivity extends AppCompatActivity {
      * Obtem uma consulta atualizada da API
      * @param codigo codigo da consulta
      */
-    private void getConsulta(Integer codigo){
+    public void getConsulta(Integer codigo){
         AndroidNetworking.get("http://192.168.0.2/autoconsulta/{codConsulta}")
                 .addPathParameter("codConsulta", codigo.toString())
                 .setTag(this)
@@ -255,5 +256,13 @@ public class ConsultasActivity extends AppCompatActivity {
      */
     public void exibirToast(String mensagem) {
         Toast.makeText(ConsultasActivity.this, mensagem, Toast.LENGTH_SHORT).show();
+    }
+
+    public ConsultaDAO getConsultaDao() {
+        return consultaDAO;
+    }
+
+    public void setConsultaDao(ConsultaDAO consultaDao) {
+        this.consultaDAO = consultaDao;
     }
 }
