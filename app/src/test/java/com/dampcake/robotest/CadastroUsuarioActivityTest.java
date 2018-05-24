@@ -11,17 +11,13 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.fakes.RoboMenuItem;
 
+import DAO.UsuarioDAO;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
-public class CadastroUsuarioActivityTest extends AppCompatActivity{
-
-
-    @Before
-    public void inicializaDAO() {
-        //DAO.DAO.getHelper(getBaseContext());
-    }
+public class CadastroUsuarioActivityTest {
 
     @Test
     public void clickNovoUsuarioVazio(){
@@ -37,6 +33,7 @@ public class CadastroUsuarioActivityTest extends AppCompatActivity{
         CadastroUsuarioActivity activity = Robolectric.buildActivity(CadastroUsuarioActivity.class).create().visible().get();
         EditText txt = activity.findViewById(R.id.txtNomeUsuario);
         txt.setText("Carlos");
+        DAO.DAO.getHelper(activity.getBaseContext());
         activity.findViewById(R.id.btnCadastroUsuario).performClick();
         assertTrue(activity.isFinishing());
     }
