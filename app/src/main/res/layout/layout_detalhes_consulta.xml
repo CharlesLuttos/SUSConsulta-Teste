@@ -13,7 +13,7 @@
     <TableRow>
 
         <TextView
-            android:id="@+id/txt_codigo"
+            android:id="@+id/tv_codigo"
             android:layout_gravity="fill"
             android:text="@string/codigo"
             android:textAlignment="center"
@@ -30,7 +30,7 @@
     <TableRow>
 
         <TextView
-            android:id="@+id/txt_paciente"
+            android:id="@+id/tv_paciente"
             android:layout_gravity="fill"
             android:text="@string/paciente"
             android:textAlignment="center"
@@ -47,7 +47,7 @@
     <TableRow>
 
         <TextView
-            android:id="@+id/txt_procedimento"
+            android:id="@+id/tv_procedimento"
             android:layout_gravity="fill"
             android:text="@string/procedimento"
             android:textAlignment="center"
@@ -64,7 +64,7 @@
     <TableRow>
 
         <TextView
-            android:id="@+id/txt_unidade_solicitante"
+            android:id="@+id/tv_unidade_solicitante"
             android:layout_gravity="fill"
             android:text="@string/unidade_solicitante"
             android:textAlignment="center"
@@ -82,7 +82,7 @@
     <TableRow>
 
         <TextView
-            android:id="@+id/txt_local"
+            android:id="@+id/tv_local"
             android:layout_gravity="fill"
             android:text="@string/local"
             android:textAlignment="center"
@@ -99,7 +99,7 @@
     <TableRow>
 
         <TextView
-            android:id="@+id/txt_data"
+            android:id="@+id/tv_data"
             android:layout_gravity="fill"
             android:text="@string/data"
             android:textAlignment="center"
@@ -116,7 +116,7 @@
     <TableRow>
 
         <TextView
-            android:id="@+id/txt_situacao"
+            android:id="@+id/tv_situacao"
             android:layout_gravity="fill"
             android:text="@string/situacao"
             android:textAlignment="center"
