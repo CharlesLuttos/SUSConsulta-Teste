@@ -10,6 +10,8 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.fakes.RoboMenuItem;
 
+import DAO.UsuarioDAO;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -39,6 +41,7 @@ public class CadastroUsuarioActivityTest {
 
         EditText txt = activity.findViewById(R.id.txtNomeUsuario);
         txt.setText("Carlos");
+        DAO.DAO.getHelper(activity.getBaseContext());
         activity.findViewById(R.id.btnCadastroUsuario).performClick();
         assertTrue(activity.isFinishing());
     }
