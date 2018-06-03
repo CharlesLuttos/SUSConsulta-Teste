@@ -1,6 +1,5 @@
 package com.dampcake.robotest;
 
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.EditText;
 
@@ -15,12 +14,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
-public class CadastroUsuarioActivityTest extends AppCompatActivity{
-
+public class CadastroUsuarioActivityTest {
+    // CadastroUsuarioActivity activity;
 
     @Before
     public void inicializaDAO() {
-        //DAO.DAO.getHelper(getBaseContext());
+        CadastroUsuarioActivity activity = Robolectric.buildActivity(CadastroUsuarioActivity.class).create().resume().visible().get();
+        DAO.DAO.getHelper(activity.getBaseContext());
     }
 
     @Test
@@ -34,7 +34,9 @@ public class CadastroUsuarioActivityTest extends AppCompatActivity{
 
     @Test
     public void clickNovoUsuarioValido(){
-        CadastroUsuarioActivity activity = Robolectric.buildActivity(CadastroUsuarioActivity.class).create().visible().get();
+        CadastroUsuarioActivity
+        activity = Robolectric.buildActivity(CadastroUsuarioActivity.class).create().visible().get();
+
         EditText txt = activity.findViewById(R.id.txtNomeUsuario);
         txt.setText("Carlos");
         activity.findViewById(R.id.btnCadastroUsuario).performClick();
