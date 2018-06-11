@@ -1,10 +1,11 @@
-package com.dampcake.robotest;
+package com.dampcake.robotest.unitarios;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.ListView;
+
+import com.dampcake.robotest.CadastroConsultasActivity;
+import com.dampcake.robotest.ConsultasActivity;
+import com.dampcake.robotest.R;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,17 +14,23 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.fakes.RoboMenuItem;
 import org.robolectric.shadows.ShadowApplication;
 
-import adapters.ConsultaAdapter;
-import model.Consulta;
+import model.Usuario;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
 public class ConsultasActivityTest {
+
+    @Test
+    public void testCreate() {
+        ConsultasActivity activity = Robolectric.buildActivity(ConsultasActivity.class).create().get();
+        boolean result;
+        result = activity != null;
+        assertTrue(result);
+    }
 
     @Test
     public void abrirCadastroConsultaActivity(){
@@ -37,7 +44,7 @@ public class ConsultasActivityTest {
     @Test
     public void inicializarComponentes(){
         ConsultasActivity activity = Robolectric.buildActivity(ConsultasActivity.class).create().visible().get();
-        assertNotNull(activity.listView);
+        assertNotNull(activity.listViewConsultas);
         assertNotNull(activity.fab);
     }
 
@@ -55,30 +62,23 @@ public class ConsultasActivityTest {
         assertFalse(activity.isFinishing());
     }
 
-   /* @Test
-    public void onResume(){
+    @Test
+    public void testeCliqueListaConsultas() {
         ConsultasActivity activity = Robolectric.buildActivity(ConsultasActivity.class).create().visible().get();
-        activity.carregarLista();
-        ListView listview = activity.findViewById(R.id.lista_consulta);
-        assertNotNull(listview);
-        assertNotNull(listview.getEmptyView());
-        assertNotNull(activity.listaConsultas);
-        assertNotNull(listview.getAdapter());
-    }*/
-
+        activity.listViewConsultas.performItemClick(activity.getCurrentFocus(),0,0);
+    }
 
     @Test
-    public void testCreate() {
-        ConsultasActivity activity = Robolectric.buildActivity(ConsultasActivity.class).create().get();
-        boolean result;
-        result = activity != null;
-        assertTrue(result);
+    public void testeCarregaLista() {
+        Intent intent = new Intent();
+        intent.putExtra("usuario", new Usuario(1,"nome"));
+        ConsultasActivity activity = Robolectric.buildActivity(ConsultasActivity.class, intent).create().resume().visible().get();
     }
 
     @Test
     public void testInicializaBancoCadastroUsuario() {
         ConsultasActivity activity = Robolectric.buildActivity(ConsultasActivity.class).create().get();
-        // activity.inicializarBanco();
         assertTrue(activity.getConsultaDao() != null);
     }
+
 }

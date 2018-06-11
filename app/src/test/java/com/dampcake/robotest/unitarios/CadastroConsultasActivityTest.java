@@ -1,9 +1,9 @@
-package com.dampcake.robotest;
+package com.dampcake.robotest.unitarios;
 
-import android.content.Intent;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.Toast;
+
+import com.dampcake.robotest.CadastroConsultasActivity;
+import com.dampcake.robotest.R;
 
 import junit.framework.Assert;
 
@@ -14,8 +14,6 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.fakes.RoboMenuItem;
-
-import model.Usuario;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -49,23 +47,11 @@ public class CadastroConsultasActivityTest {
         assertTrue(activity.onOptionsItemSelected(menuItem));
     }
 
-
     @Test
     public void clickNovaConsultaVazia() {
         CadastroConsultasActivity activity = Robolectric.buildActivity(CadastroConsultasActivity.class).create().visible().get();
         activity.findViewById(R.id.btnCadastroCodigo).performClick();
         assertFalse(activity.isFinishing());
-    }
-
-    @Test
-    public void clickNovaConsultaNaoVazia() {
-        Intent intent = new Intent();
-        intent.putExtra("usuario", new Usuario(1,"as"));
-        CadastroConsultasActivity activity = Robolectric.buildActivity(CadastroConsultasActivity.class, intent).create().visible().get();
-        EditText et = activity.findViewById(R.id.txtCodigo);
-        et.setText("222757399");
-        activity.findViewById(R.id.btnCadastroCodigo).performClick();
-        assertTrue(activity.isFinishing());
     }
 
     @Test
@@ -80,7 +66,6 @@ public class CadastroConsultasActivityTest {
         json.put("situacao", "1");
 
         Assert.assertNotNull(activity.formarObjetoConsulta(json, true));
-
     }
 
     @Test

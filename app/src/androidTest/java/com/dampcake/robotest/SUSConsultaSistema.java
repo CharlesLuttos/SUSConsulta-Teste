@@ -19,9 +19,9 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
@@ -31,16 +31,15 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 
-//Teste Sistema
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class UsuarioActivityTest {
+public class SUSConsultaSistema {
 
     @Rule
     public ActivityTestRule<UsuarioActivity> mActivityTestRule = new ActivityTestRule<>(UsuarioActivity.class);
 
     @Test
-    public void usuarioActivityTest() {
+    public void sUSConsultaSistema() {
         ViewInteraction floatingActionButton = onView(
                 allOf(withId(R.id.fab),
                         childAtPosition(
@@ -59,10 +58,30 @@ public class UsuarioActivityTest {
                                         0),
                                 0),
                         isDisplayed()));
-        appCompatEditText.perform(replaceText("Renato"), closeSoftKeyboard());
+        appCompatEditText.perform(click());
+
+        ViewInteraction appCompatEditText2 = onView(
+                allOf(withId(R.id.txtNomeUsuario),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.textInputLayout),
+                                        0),
+                                0),
+                        isDisplayed()));
+        appCompatEditText2.perform(replaceText("Gedcb"), closeSoftKeyboard());
+
+        ViewInteraction appCompatEditText3 = onView(
+                allOf(withId(R.id.txtNomeUsuario), withText("Gedcb"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.textInputLayout),
+                                        0),
+                                0),
+                        isDisplayed()));
+        appCompatEditText3.perform(pressImeActionButton());
 
         ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.btnCadastroUsuario), withText("Add"),
+                allOf(withId(R.id.btnCadastroUsuario), withText("Adicionar"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -89,7 +108,7 @@ public class UsuarioActivityTest {
                         isDisplayed()));
         floatingActionButton2.perform(click());
 
-        ViewInteraction appCompatEditText2 = onView(
+        ViewInteraction appCompatEditText4 = onView(
                 allOf(withId(R.id.txtCodigo),
                         childAtPosition(
                                 childAtPosition(
@@ -97,10 +116,20 @@ public class UsuarioActivityTest {
                                         0),
                                 0),
                         isDisplayed()));
-        appCompatEditText2.perform(replaceText("222757399"), closeSoftKeyboard());
+        appCompatEditText4.perform(click());
+
+        ViewInteraction appCompatEditText5 = onView(
+                allOf(withId(R.id.txtCodigo),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.txt_codigo_layout),
+                                        0),
+                                0),
+                        isDisplayed()));
+        appCompatEditText5.perform(replaceText("222757399"), closeSoftKeyboard());
 
         ViewInteraction appCompatButton2 = onView(
-                allOf(withId(R.id.btnCadastroCodigo), withText("Submit"),
+                allOf(withId(R.id.btnCadastroCodigo), withText("Cadastrar"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -108,38 +137,6 @@ public class UsuarioActivityTest {
                                 1),
                         isDisplayed()));
         appCompatButton2.perform(click());
-
-        DataInteraction linearLayout2 = onData(anything())
-                .inAdapterView(allOf(withId(R.id.lista_consulta),
-                        childAtPosition(
-                                withClassName(is("android.support.constraint.ConstraintLayout")),
-                                0)))
-                .atPosition(0);
-        linearLayout2.perform(click());
-
-        pressBack();
-
-        ViewInteraction textView = onView(
-                allOf(withId(android.R.id.title), withText("Delete"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("com.android.internal.view.menu.ListMenuItemView")),
-                                        0),
-                                0),
-                        isDisplayed()));
-        textView.perform(click());
-
-        pressBack();
-
-        ViewInteraction textView2 = onView(
-                allOf(withId(android.R.id.title), withText("Delete"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("com.android.internal.view.menu.ListMenuItemView")),
-                                        0),
-                                0),
-                        isDisplayed()));
-        textView2.perform(click());
 
     }
 

@@ -28,7 +28,7 @@ import model.Usuario;
 public class UsuarioActivity extends AppCompatActivity {
     ArrayList<Usuario> listaUsuarios;
     UsuarioAdapter usuarioAdapter;
-    ListView listViewUsuarios;
+    public ListView listViewUsuarios;
     Usuario usuario;
     UsuarioDAO usuarioDAO;
     FloatingActionButton fab;
@@ -103,7 +103,7 @@ public class UsuarioActivity extends AppCompatActivity {
     /**
      * Define adapter e carrega lista com dados do banco
      */
-    private void carregarLista() {
+    public void carregarLista() {
         listViewUsuarios.setEmptyView(findViewById(android.R.id.empty));
         listaUsuarios = usuarioDAO.listar();
         usuarioAdapter = new UsuarioAdapter(this, listaUsuarios);
@@ -116,7 +116,7 @@ public class UsuarioActivity extends AppCompatActivity {
      * Exibe toast
      * @param mensagem mensagem a ser exibida
      */
-    private void exibirToast(String mensagem) {
+    public void exibirToast(String mensagem) {
         Toast.makeText(UsuarioActivity.this, mensagem, Toast.LENGTH_SHORT).show();
     }
 

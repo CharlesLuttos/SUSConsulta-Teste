@@ -32,12 +32,12 @@ import model.Usuario;
 
 public class ConsultasActivity extends AppCompatActivity {
     SwipeRefreshLayout swipeLayout;
-    ListView listView;
+    public ListView listViewConsultas;
     ArrayList<Consulta> listaConsultas;
     ConsultaAdapter consultaAdapter;
     private ConsultaDAO consultaDAO;
     Usuario usuario;
-    FloatingActionButton fab;
+    public FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +52,10 @@ public class ConsultasActivity extends AppCompatActivity {
         definirSwipeToPush();
         definirToolbarIcon();
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewConsultas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View item, int position, long id) {
-                Consulta consulta = (Consulta) listView.getItemAtPosition(position);
+                Consulta consulta = (Consulta) listViewConsultas.getItemAtPosition(position);
                 Intent activityDetalhesConsulta = new Intent(ConsultasActivity.this, DetalhesConsultasActivity.class);
                 activityDetalhesConsulta.putExtra("consulta", consulta);
                 startActivity(activityDetalhesConsulta);
@@ -103,7 +103,7 @@ public class ConsultasActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
-                Consulta consulta = (Consulta) listView.getItemAtPosition(info.position);
+                Consulta consulta = (Consulta) listViewConsultas.getItemAtPosition(info.position);
                 ConsultaDAO dao = new ConsultaDAO(getApplication());
                 dao.apagar(consulta);
                 carregarLista();
@@ -151,7 +151,7 @@ public class ConsultasActivity extends AppCompatActivity {
      * Instancia os componentes
      */
     private void inicializarComponentes() {
-        listView = findViewById(R.id.lista_consulta);
+        listViewConsultas = findViewById(R.id.lista_consulta);
         fab = findViewById(R.id.fab);
     }
 
@@ -159,14 +159,14 @@ public class ConsultasActivity extends AppCompatActivity {
      * Define adapter e carrega lista com dados do banco
      */
     public void carregarLista() {
-        listView = findViewById(R.id.lista_consulta);
-        listView.setEmptyView(findViewById(android.R.id.empty));
+        listViewConsultas = findViewById(R.id.lista_consulta);
+        listViewConsultas.setEmptyView(findViewById(android.R.id.empty));
         listaConsultas = consultaDAO.listar(usuario); // Necessario informar usuario para saber quais consultas listar
         consultaAdapter = new ConsultaAdapter(this, listaConsultas);
-        listView.setAdapter(consultaAdapter);
+        listViewConsultas.setAdapter(consultaAdapter);
 
         // Registra para o menu de contexto (exibido ao manter o toque sobre um item da lista)
-        registerForContextMenu(listView);
+        registerForContextMenu(listViewConsultas);
     }
 
     /**
@@ -219,7 +219,7 @@ public class ConsultasActivity extends AppCompatActivity {
      * @param codigo codigo da consulta
      */
     public void getConsulta(Integer codigo){
-        AndroidNetworking.get("http://192.168.0.2/autoconsulta/{codConsulta}")
+        AndroidNetworking.get("http://172.20.10.5:8000/autoconsulta/{codConsulta}")
                 .addPathParameter("codConsulta", codigo.toString())
                 .setTag(this)
                 .setPriority(Priority.LOW)
@@ -227,8 +227,6 @@ public class ConsultasActivity extends AppCompatActivity {
                 .getAsObject(Consulta.class, new ParsedRequestListener<Consulta>() {
                     @Override
                     public void onResponse(Consulta user) {
-                        listView = findViewById(R.id.lista_consulta);
-                        listView.setEmptyView(findViewById(android.R.id.empty));
                         for(Consulta c : listaConsultas){
                             if(c.getSituacao().equals(user.getSituacao())){
                                 c.setPaciente(user.getPaciente());
@@ -238,9 +236,7 @@ public class ConsultasActivity extends AppCompatActivity {
                                 consultaDAO.atualizar(c);
                             }
                         }
-                        consultaAdapter = new ConsultaAdapter(getApplicationContext(), listaConsultas);
-                        listView.setAdapter(consultaAdapter);
-                        registerForContextMenu(listView);
+                        consultaAdapter.notifyDataSetChanged();
                     }
 
                     @Override

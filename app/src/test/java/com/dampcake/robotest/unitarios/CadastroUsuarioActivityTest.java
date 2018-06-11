@@ -1,7 +1,10 @@
-package com.dampcake.robotest;
+package com.dampcake.robotest.unitarios;
 
 import android.view.MenuItem;
 import android.widget.EditText;
+
+import com.dampcake.robotest.CadastroUsuarioActivity;
+import com.dampcake.robotest.R;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,8 +12,6 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.fakes.RoboMenuItem;
-
-import DAO.UsuarioDAO;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -32,18 +33,6 @@ public class CadastroUsuarioActivityTest {
         txt.setText("");
         activity.findViewById(R.id.btnCadastroUsuario).performClick();
         assertFalse(activity.isFinishing());
-    }
-
-    @Test
-    public void clickNovoUsuarioValido(){
-        CadastroUsuarioActivity
-        activity = Robolectric.buildActivity(CadastroUsuarioActivity.class).create().visible().get();
-
-        EditText txt = activity.findViewById(R.id.txtNomeUsuario);
-        txt.setText("Carlos");
-        DAO.DAO.getHelper(activity.getBaseContext());
-        activity.findViewById(R.id.btnCadastroUsuario).performClick();
-        assertTrue(activity.isFinishing());
     }
 
     @Test

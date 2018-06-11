@@ -1,6 +1,9 @@
-package com.dampcake.robotest;
+package com.dampcake.robotest.unitarios;
 
 import android.view.MenuItem;
+
+import com.dampcake.robotest.DetalhesConsultasActivity;
+import com.dampcake.robotest.R;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
